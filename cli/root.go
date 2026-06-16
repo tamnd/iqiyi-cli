@@ -89,6 +89,11 @@ iqiyi is an independent tool and is not affiliated with iQIYI.`,
 	root.AddCommand(
 		app.listCmd(),
 		app.channelsCmd(),
+		app.hotCmd(),
+		app.rankCmd(),
+		app.searchCmd(),
+		app.showCmd(),
+		app.episodesCmd(),
 		newVersionCmd(),
 	)
 	return root
