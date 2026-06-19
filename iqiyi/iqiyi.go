@@ -68,6 +68,8 @@ func Channels() []ChannelInfo {
 // Config holds the parameters for constructing a Client.
 type Config struct {
 	BaseURL   string
+	HotURL    string // base URL for hot list (mesh.if.iqiyi.com); override in tests
+	SearchURL string // base URL for search (search.video.iqiyi.com); override in tests
 	UserAgent string
 	Rate      time.Duration
 	Retries   int
@@ -78,6 +80,8 @@ type Config struct {
 func DefaultConfig() Config {
 	return Config{
 		BaseURL:   "https://pcw-api.iqiyi.com",
+		HotURL:    "https://mesh.if.iqiyi.com",
+		SearchURL: "https://search.video.iqiyi.com",
 		UserAgent: DefaultUserAgent,
 		Rate:      200 * time.Millisecond,
 		Retries:   3,
@@ -92,6 +96,8 @@ type Client struct {
 	rate      time.Duration
 	retries   int
 	baseURL   string
+	hotURL    string
+	searchURL string
 
 	last time.Time
 }
@@ -104,6 +110,8 @@ func NewClient(cfg Config) *Client {
 		rate:      cfg.Rate,
 		retries:   cfg.Retries,
 		baseURL:   cfg.BaseURL,
+		hotURL:    cfg.HotURL,
+		searchURL: cfg.SearchURL,
 	}
 }
 
